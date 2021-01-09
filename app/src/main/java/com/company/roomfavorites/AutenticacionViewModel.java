@@ -14,7 +14,7 @@ public class AutenticacionViewModel extends AndroidViewModel {
     enum EstadoDeLaAutenticacion {
         NO_AUTENTICADO,
         AUTENTICADO,
-        NOMBRE_NO_DISPONIBLE,
+        INVALIDA,
     }
 
     MutableLiveData<EstadoDeLaAutenticacion> estadoDeLaAutenticacion = new MutableLiveData<>(EstadoDeLaAutenticacion.NO_AUTENTICADO);
@@ -37,14 +37,9 @@ public class AutenticacionViewModel extends AndroidViewModel {
             }
 
             @Override
-            public void cuandoNombreNoDisponible() {
-                estadoDeLaAutenticacion.postValue(EstadoDeLaAutenticacion.NOMBRE_NO_DISPONIBLE);
+            public void cuandoContrasenyaInvalida() {
+                estadoDeLaAutenticacion.postValue(EstadoDeLaAutenticacion.INVALIDA);
             }
         });
-    }
-
-    void cerrarSesion(){
-        usuarioAutenticado.postValue(null);
-        estadoDeLaAutenticacion.postValue(EstadoDeLaAutenticacion.NO_AUTENTICADO);
     }
 }

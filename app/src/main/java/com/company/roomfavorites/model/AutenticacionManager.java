@@ -12,7 +12,7 @@ public class AutenticacionManager {
 
     public interface IniciarSesionCallback {
         void cuandoUsuarioAutenticado(Usuario usuario);
-        void cuandoNombreNoDisponible();
+        void cuandoContrasenyaInvalida();
     }
 
     AppBaseDeDatos.UsuariosDao dao;
@@ -30,12 +30,12 @@ public class AutenticacionManager {
             } else {
                 if (dao.comprobarNombreDisponible(username) == null) {
 
-                    usuario = new Usuario(username, password);
-                    dao.insertarUsuario(usuario);
-                    callback.cuandoUsuarioAutenticado(usuario);
+                    dao.insertarUsuario(new Usuario(username, password));
+
+                    callback.cuandoUsuarioAutenticado(dao.autenticar(username, password));
 
                 } else {
-                    callback.cuandoNombreNoDisponible();
+                    callback.cuandoContrasenyaInvalida();
                 }
             }
         });

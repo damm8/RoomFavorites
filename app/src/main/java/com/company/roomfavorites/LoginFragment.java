@@ -21,7 +21,7 @@ public class LoginFragment extends Fragment {
     private FragmentLoginBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return (binding = FragmentLoginBinding.inflate(inflater, container, false)).getRoot();
     }
 
@@ -41,8 +41,8 @@ public class LoginFragment extends Fragment {
                 case AUTENTICADO:
                     navController.navigate(R.id.action_loginFragment_to_listFragment);
                     break;
-                case NOMBRE_NO_DISPONIBLE:
-                    Toast.makeText(getContext(), "NOMBRE NO DISPONIBLE", Toast.LENGTH_SHORT).show();
+                case INVALIDA:
+                    Toast.makeText(getContext(), "PASSWORD INCORRECTO", Toast.LENGTH_SHORT).show();
                     break;
             }
         });
