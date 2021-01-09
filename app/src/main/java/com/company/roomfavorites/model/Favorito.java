@@ -2,6 +2,8 @@ package com.company.roomfavorites.model;
 
 import androidx.room.Entity;
 
+/* Esta clase define la relacion "muchos a muchos" entre Usuario y Producto */
+
 @Entity(primaryKeys = {"userId", "productoId"})
 public class Favorito {
     public int userId;
